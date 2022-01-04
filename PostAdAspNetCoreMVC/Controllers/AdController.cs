@@ -27,5 +27,10 @@ namespace PostAdAspNetCoreMVC.Controllers
             _adRepository.Save(ad);
             return RedirectToAction("Index");
         }
+        public IActionResult Detail(int id)
+        {
+            Ad ad = _adRepository.Get(id);
+            return View(ad);
+        }
     }
 }

@@ -18,7 +18,7 @@
                 @foreach (Ad a in Model)
                 {
 
-                    <a class="row" asp-action="" asp-controller="Ad" asp-route-id="@a.Id">
+                    <a class="row" asp-action="Detail" asp-controller="Ad" asp-route-id="@a.Id">
                         <div class="col-9">
                             <div class="row">
                                 <h2 class="col-10">
