@@ -1,0 +1,18 @@
+﻿
+
+<section>
+    <form asp-controller="Ad" asp-action="SubmitForm" method="post" class="col">
+        <div class="row justify-content-center m-2">
+            <input type="text" name="Title" placeholder="Ad's Title here" class="col-8 form-control p-2" />
+        </div>
+        <div class="row justify-content-center m-2">
+            <input type="text" name="Price" placeholder="Ad's price here (in €)" class="col-8 form-control p-2" />
+        </div>
+        <div class="row justify-content-center m-2">
+            <textarea type="text" name="Description" placeholder="Write a Description here" class="col-8 p-1 form-control"></textarea>
+        </div>
+        <div class="row justify-content-center m-2">
+            <button class="btn btn-secondary col-8 p-2" type="submit">Post Ad</button>
+        </div>
+    </form>
+</section>

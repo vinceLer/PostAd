@@ -18,5 +18,14 @@ namespace PostAdAspNetCoreMVC.Controllers
 
             return View("Index", adsList);
         }
+        public IActionResult Form()
+        {
+            return View();
+        }
+        public IActionResult SubmitForm(Ad ad)
+        {
+            _adRepository.Save(ad);
+            return RedirectToAction("Index");
+        }
     }
 }
