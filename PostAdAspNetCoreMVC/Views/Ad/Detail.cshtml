@@ -15,6 +15,14 @@ else
         <span class="col-3">@Model.Price €</span>
     </div>
     <div class="row">
+        @foreach (Image image in Model.Images)
+        {
+            <div class="col">
+                <img src="~/@image.Url" width="300px"/>
+            </div>
+        }
+    </div>
+    <div class="row">
         <span class="col">
             @Model.Description
         </span>

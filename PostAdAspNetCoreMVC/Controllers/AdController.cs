@@ -26,9 +26,12 @@ namespace PostAdAspNetCoreMVC.Controllers
         {
             return View();
         }
-        public IActionResult SubmitForm(Ad ad, IFormFile image)
+        public IActionResult SubmitForm(Ad ad, IFormFile[] images)
         {
-            ad.Images.Add(new Image() { Url = _uploadService.Upload(image) });
+            foreach(IFormFile image in images)
+            {
+                ad.Images.Add(new Image() { Url = _uploadService.Upload(image) });
+            }
             _adRepository.Save(ad);
             return RedirectToAction("Index");
         }
