@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using PostAdAspNetCoreMVC.Interfaces;
 using PostAdAspNetCoreMVC.Models;
+using PostAdAspNetCoreMVC.Services;
 using System.Collections.Generic;
 
 namespace PostAdAspNetCoreMVC.Controllers
@@ -8,9 +10,11 @@ namespace PostAdAspNetCoreMVC.Controllers
     public class AdController : Controller
     {
         IRepository<Ad> _adRepository;
-        public AdController(IRepository<Ad> adRepository)
+        UploadService _uploadService;
+        public AdController(IRepository<Ad> adRepository, UploadService uploadService)
         {
             _adRepository = adRepository;
+            _uploadService = uploadService; 
         }
         public IActionResult Index()
         {
@@ -22,8 +26,9 @@ namespace PostAdAspNetCoreMVC.Controllers
         {
             return View();
         }
-        public IActionResult SubmitForm(Ad ad)
+        public IActionResult SubmitForm(Ad ad, IFormFile image)
         {
+            ad.Images.Add(new Image() { Url = _uploadService.Upload(image) });
             _adRepository.Save(ad);
             return RedirectToAction("Index");
         }

@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using PostAdAspNetCoreMVC.Interfaces;
 using PostAdAspNetCoreMVC.Models;
 using PostAdAspNetCoreMVC.Repositories;
+using PostAdAspNetCoreMVC.Services;
 using PostAdAspNetCoreMVC.Tools;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,7 @@ namespace PostAdAspNetCoreMVC
             services.AddControllersWithViews();
             services.AddDbContext<DataContext>();
             services.AddScoped<IRepository<Ad>, AdRepository>();
+            services.AddTransient<UploadService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

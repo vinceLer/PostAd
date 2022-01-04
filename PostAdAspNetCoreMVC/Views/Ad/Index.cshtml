@@ -19,6 +19,9 @@
                 {
 
                     <a class="row" asp-action="Detail" asp-controller="Ad" asp-route-id="@a.Id">
+                        <div class="col-2">
+                            <img src="~/@a.Images[0].Url" width="200px"/>
+                        </div>
                         <div class="col-9">
                             <div class="row">
                                 <h2 class="col-10">
