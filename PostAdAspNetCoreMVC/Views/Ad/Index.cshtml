@@ -1,2 +1,42 @@
-﻿
+﻿@model List<Ad>
 
+
+<section>
+    @if (Model != null)
+    {
+        <div>
+            @if (Model.Count == 0)
+            {
+                <div class="row justify-content-center text-center">
+                    <div class="col alert alert-danger">
+                        No ad available
+                    </div>
+                </div>
+            }
+            else
+            {
+                @foreach (Ad a in Model)
+                {
+
+                    <a class="row" asp-action="" asp-controller="Ad" asp-route-id="@a.Id">
+                        <div class="col-9">
+                            <div class="row">
+                                <h2 class="col-10">
+                                    @a.Title
+                                </h2>
+                                <span class="col-2">
+                                    @a.Price euros
+                                </span>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    @a.Description
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                }
+            }
+        </div>
+    }
+</section>
