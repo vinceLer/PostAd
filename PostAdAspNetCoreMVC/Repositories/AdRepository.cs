@@ -2,8 +2,10 @@
 using PostAdAspNetCoreMVC.Interfaces;
 using PostAdAspNetCoreMVC.Models;
 using PostAdAspNetCoreMVC.Tools;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace PostAdAspNetCoreMVC.Repositories
 {
@@ -28,6 +30,11 @@ namespace PostAdAspNetCoreMVC.Repositories
             _dataContext.Ads.Add(entity);
             _dataContext.SaveChanges();
             return entity;
+        }
+
+        public List<Ad> Search(Expression<Func<Ad, bool>> searchMethode)
+        {
+            return _dataContext.Ads.Include(a => a.Images).Where(searchMethode).ToList();
         }
     }
 }

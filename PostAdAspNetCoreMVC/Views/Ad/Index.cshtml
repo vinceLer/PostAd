@@ -1,6 +1,15 @@
 ﻿@model List<Ad>
 
 
+<section class="row m-1">
+    <form class="col" asp-controller="Ad" asp-action="SubmitSearch" method="post">
+        <div class="row justify-content-center m-1">
+            <input type="text" name="search" placeholder="Search..." class="col-6 form-control p-1" />
+            <button type="submit" class="col-2 btn btn-primary">Rechercher</button>
+        </div>
+    </form>
+</section>
+
 <section>
     @if (Model != null)
     {
@@ -20,7 +29,7 @@
 
                     <a class="row" asp-action="Detail" asp-controller="Ad" asp-route-id="@a.Id">
                         <div class="col-2">
-                            <img src="~/@a.Images[0].Url" width="200px"/>
+                            <img src="~/@a.Images[0].Url" width="200px" />
                         </div>
                         <div class="col-9">
                             <div class="row">

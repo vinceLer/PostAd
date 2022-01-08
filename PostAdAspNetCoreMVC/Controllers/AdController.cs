@@ -14,21 +14,31 @@ namespace PostAdAspNetCoreMVC.Controllers
         public AdController(IRepository<Ad> adRepository, UploadService uploadService)
         {
             _adRepository = adRepository;
-            _uploadService = uploadService; 
+            _uploadService = uploadService;
         }
         public IActionResult Index()
         {
-            List<Ad> adsList = _adRepository.GetAll();
+            List<Ad> ads = _adRepository.GetAll();
 
-            return View("Index", adsList);
+            return View("Index", ads);
+        }
+        public IActionResult SubmitSearch(string search)
+        {
+            List<Ad> ads = _adRepository.GetAll();
+            if (search != null)
+            {
+                ads = _adRepository.Search(a => a.Title.Contains(search) || a.Description.Contains(search));
+            }
+            return View("Index", ads);
         }
         public IActionResult Form()
         {
             return View();
         }
+
         public IActionResult SubmitForm(Ad ad, IFormFile[] images)
         {
-            foreach(IFormFile image in images)
+            foreach (IFormFile image in images)
             {
                 ad.Images.Add(new Image() { Url = _uploadService.Upload(image) });
             }
